@@ -3,7 +3,7 @@
 <head>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="New BMI Calculator">
+    <meta name="apple-mobile-web-app-title" content="New BMI">
 	<link rel="manifest" href="/manifest.json">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>New BMI Calculator</title>
@@ -51,6 +51,12 @@
 			background: none;
 			border: 0;
 		}
+		#wtextlabel{
+			font-size: 10px;
+			position:relative;
+			left: -44px;
+			top: 10px;
+		}
 	</style>
 </head>
 <body>
@@ -91,6 +97,12 @@
 	  <path fill-rule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"/>
 	</svg>
 </button>
+<button onclick="copyCombinedWText()">
+	<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-copy" viewBox="0 0 16 16">
+	  <path fill-rule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"/>
+	</svg>
+</button>
+<span id="wtextlabel">w/text</span>
 <br><br>
 </p>
 <p>
@@ -146,6 +158,12 @@ Apologies if the website is bad, I made it in a few hours and don't really know 
 	  copyText.select();
 	  copyText.setSelectionRange(0, 99999); // For mobile devices
 	  navigator.clipboard.writeText(copyText.value);
+  }
+  function copyCombinedWText(){
+	  var copyText = document.getElementById("combined");
+	  copyText.select();
+	  copyText.setSelectionRange(0, 99999); // For mobile devices
+	  navigator.clipboard.writeText(`${copyText.value} - (Standard) / (New)`);
   }
 </script>
 </body>
