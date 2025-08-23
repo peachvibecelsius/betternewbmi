@@ -192,9 +192,10 @@ Apologies if the website is bad, I made it in a few hours and don't really know 
   
   function copyCombined(){
 	  var copyText = document.getElementById("combined");
+	  var textToCopy = copyText.value;
 	  copyText.select();
 	  copyText.setSelectionRange(0, 99999); // For mobile devices
-	  navigator.clipboard.writeText(copyText.value);
+	  navigator.clipboard.writeText(textToCopy);
   }
 </script>
 </body>
