@@ -192,13 +192,30 @@ Apologies if the website is bad, I made it in a few hours and don't really know 
   
   function copyCombined(){
 	  var copyText = document.getElementById("combined");
-	  var textToCopy = copyText.value;
 	  copyText.select();
 	  copyText.setSelectionRange(0, 99999); // For mobile devices
-	  navigator.clipboard.writeText(textToCopy);
+	  const newbmi = document.getElementById('newbmi').value;
+	  const standardbmi = document.getElementById('standardbmi').value;
+	const formatElement = document.getElementById('format');
+	const format = formatElement.value;
+	  
+	  let combined;
+		if (format == "a") {
+			combined = standardbmi + " / " + newbmi;
+		} else if (format == "b") {
+			combined = standardbmi + " / " + newbmi + " - Standard / New";
+		} else if (format == "c") {
+			combined = "Standard: " + standardbmi + " New: " + newbmi;
+		} else if (format == "d") {
+			combined = standardbmi + "/" + newbmi;
+		} else if (format == "e") {
+			combined = standardbmi + " | " + newbmi;
+		} else if (format == "f") {
+			combined = "s " + standardbmi + " n " + newbmi;
+		}
+	  navigator.clipboard.writeText(combined);
   }
 </script>
 </body>
 
 </html>
-
