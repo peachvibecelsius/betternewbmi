@@ -212,27 +212,34 @@ Apologies if the website is bad, I made it in a few hours and don't really know 
 		}
 		
 		try {
-			await navigator.clipboard.writeText(combined);
-		} catch (err) {
-			fallbackCopyText(combined);
-		}
+				const clipboardItem = new ClipboardItem({
+					'text/plain': new Blob([combined], { type: 'text/plain' })
+				});
+				await navigator.clipboard.write([clipboardItem]);
+			} catch (err) {
+				fallbackCopyText(combined);
+			}
 	}
 	
-	function fallbackCopyText(text) {
-		const textArea = document.createElement('textarea');
-		textArea.value = text;
-		textArea.style.position = 'fixed';
-		textArea.style.opacity = 0;
-		document.body.appendChild(textArea);
-		textArea.select();
-		
-		try {
-			document.execCommand('copy');
-		} catch (err) {
-		} finally {
-			document.body.removeChild(textArea);
-		}
-	}
+function fallbackCopyText(text) {
+    const input = document.createElement('input');
+    input.value = text;
+    input.readOnly = true;
+    input.style.position = 'absolute';
+    input.style.left = '-9999px';
+    document.body.appendChild(input);
+    
+    input.select();
+    input.setSelectionRange(0, text.length);
+    
+    try {
+        document.execCommand('copy');
+    } catch (err) {
+    } finally {
+        document.body.removeChild(input);
+    }
+}
+
 </script>
 </body>
 
