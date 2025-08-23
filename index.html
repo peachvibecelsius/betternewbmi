@@ -116,7 +116,7 @@
 <select id="format" oninput="calculate()">
 	<option value="a"># / #</option>
 	<option value="b">#/# - Standard / New</option>
-	<option value="c">Standard: # New: #</option>
+	<option value="c">Standard # New #</option>
 	<option value="d">#/#</option>
 	<option value="e"># | #</option>
 	<option value="f">s # n #</option>
@@ -165,7 +165,7 @@ Apologies if the website is bad, I made it in a few hours and don't really know 
 	} else if (format == "b") {
 		combined = standardbmi.toFixed(1) + " / " + newbmi.toFixed(1) + " - Standard / New";
 	} else if (format == "c") {
-		combined = "Standard: " + standardbmi.toFixed(1) + " New: " + newbmi.toFixed(1);
+		combined = "Standard " + standardbmi.toFixed(1) + " New " + newbmi.toFixed(1);
 	} else if (format == "d") {
 		combined = standardbmi.toFixed(1) + "/" + newbmi.toFixed(1);
 	} else if (format == "e") {
@@ -196,9 +196,6 @@ Apologies if the website is bad, I made it in a few hours and don't really know 
 	  copyText.setSelectionRange(0, 99999); // For mobile devices
 	  textcopy = copyText.value;
 	  textcopy = textcopy.replaceAll(/(\r\n|\n|\r)/gm, "");
-	  textcopy = textcopy.replaceAll("%20","");
-	  textcopy = textcopy.replaceAll("%3A","");
-	  textcopy = textcopy.replaceAll("%","");
 	  navigator.clipboard.writeText(textcopy);
   }
 </script>
