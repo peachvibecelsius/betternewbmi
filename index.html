@@ -190,56 +190,16 @@ Apologies if the website is bad, I made it in a few hours and don't really know 
 	  navigator.clipboard.writeText(copyText.value);
   }
   
-	async function copyCombined(){
-		const newbmi = document.getElementById('newbmi').value;
-		const standardbmi = document.getElementById('standardbmi').value;
-		const formatElement = document.getElementById('format');
-		const format = formatElement.value;
-		
-		let combined;
-		if (format == "a") {
-			combined = standardbmi + " / " + newbmi;
-		} else if (format == "b") {
-			combined = standardbmi + " / " + newbmi + " - Standard / New";
-		} else if (format == "c") {
-			combined = "Standard: " + standardbmi + " New: " + newbmi;
-		} else if (format == "d") {
-			combined = standardbmi + "/" + newbmi;
-		} else if (format == "e") {
-			combined = standardbmi + " | " + newbmi;
-		} else if (format == "f") {
-			combined = "s " + standardbmi + " n " + newbmi;
-		}
-		
-		try {
-				const clipboardItem = new ClipboardItem({
-					'text/plain': new Blob([combined], { type: 'text/plain' })
-				});
-				await navigator.clipboard.write([clipboardItem]);
-			} catch (err) {
-				fallbackCopyText(combined);
-			}
-	}
-	
-function fallbackCopyText(text) {
-    const input = document.createElement('input');
-    input.value = text;
-    input.readOnly = true;
-    input.style.position = 'absolute';
-    input.style.left = '-9999px';
-    document.body.appendChild(input);
-    
-    input.select();
-    input.setSelectionRange(0, text.length);
-    
-    try {
-        document.execCommand('copy');
-    } catch (err) {
-    } finally {
-        document.body.removeChild(input);
-    }
-}
-
+  function copyCombined(){
+	  var copyText = document.getElementById("combined");
+	  copyText.select();
+	  copyText.setSelectionRange(0, 99999); // For mobile devices
+	  textcopy = copyText.value;
+	  textcopy = textcopy.replace(/%20/g,'');
+	  textcopy = textcopy.replace(/%3A/g,'');
+	  textcopy = textcopy.replace(/\n/g,'');
+	  navigator.clipboard.writeText(textcopy);
+  }
 </script>
 </body>
 
