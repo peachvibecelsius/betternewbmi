@@ -195,8 +195,10 @@ Apologies if the website is bad, I made it in a few hours and don't really know 
 	  copyText.select();
 	  copyText.setSelectionRange(0, 99999); // For mobile devices
 	  textcopy = copyText.value;
-	  textcopy = decodeURIComponent(textcopy);
-	  textcopy = textcopy.replace(/(\r\n|\n|\r)/gm, "");
+	  textcopy = textcopy.replaceAll(/(\r\n|\n|\r)/gm, "");
+	  textcopy = textcopy.replaceAll("%20","");
+	  textcopy = textcopy.replaceAll("%3A","");
+	  textcopy = textcopy.replaceAll("%","");
 	  navigator.clipboard.writeText(textcopy);
   }
 </script>
